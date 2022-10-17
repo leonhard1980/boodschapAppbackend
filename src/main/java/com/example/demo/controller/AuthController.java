@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.AuthDto;
 import com.example.demo.security.JwtService;
-import com.example.demo.security.MyAuthenticationManager;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class AuthController {
 
-    private final MyAuthenticationManager authManager;
+    private final AuthenticationManager authManager;
     private final JwtService jwtService;
 
-    public AuthController(MyAuthenticationManager man, JwtService service) {
+    public AuthController(AuthenticationManager man, JwtService service) {
         this.authManager = man;
         this.jwtService = service;
     }

@@ -1,18 +1,15 @@
 package com.example.demo.model;
 import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
 @Table(name="users")
 public class AppUser {
-    public boolean hasTooManyWrongLogins;
     @Id
+    public boolean hasTooManyWrongLogins;
     private Long id;
-    
     private String username;
-
     private UserDetails userDetails;
     private String password;
 

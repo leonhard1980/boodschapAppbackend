@@ -1,16 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.adapters.ProductAdapter;
 import com.example.demo.dto.ProductDto;
-import com.example.demo.model.Product;
-import com.example.demo.repositories.ProductRepository;
 import com.example.demo.services.ProductService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 @RestController
@@ -36,5 +30,27 @@ public class ProductController {
             return (ResponseEntity<ProductDto>) ResponseEntity.noContent();
 
         return ResponseEntity.ok().body(product);
+    }
+
+    @PostMapping("/products")
+    public ResponseEntity<Object> postProduct(@RequestBody String productName){
+        return ResponseEntity.created();
+    }
+
+    @PutMapping("/products/{id}")
+    public ResponseEntity<Object> putProduct(@PathVariable Long id, @RequestBody String productName){
+        return ResponseEntity.created();
+    }
+
+    @DeleteMapping("/products/{id}")
+    public ResponseEntity<Object> deleteProduct(@PathVariable Long id){
+        return ResponseEntity.noContent();
+    }
+
+    //hieronder een methode die de amount van de Orderlines doorzoekt en
+    // dan het product met de hoogste amount teruggeeft.
+    @GetMapping("/products")
+    public ResponseEntity<Object> getMostSoldProduct(){
+       sort Orderline.amount
     }
 }

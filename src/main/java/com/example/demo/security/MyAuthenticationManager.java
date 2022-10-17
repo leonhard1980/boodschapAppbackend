@@ -1,3 +1,4 @@
+/*
 package com.example.demo.security;
 
 import com.example.demo.services.UserService;
@@ -13,9 +14,12 @@ public class MyAuthenticationManager implements AuthenticationManager {
         this.userService = userService;
     }
 
-    @Override
+*/
+/*    @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        userService.checkUser(authentication.getPrincipal(), authentication.getCredentials())
+        userService.checkUser(authentication.getPrincipal(), authentication.getCredentials());
         return null;
-    }
+    }*//*
+
 }
+*/

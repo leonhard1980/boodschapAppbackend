@@ -1,7 +1,7 @@
 package com.example.demo.security;
-
 import com.example.demo.repositories.UserRepository;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -15,14 +15,17 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
+@Configuration
 public class SecurityConfig  {
 
     private final JwtService jwtService;
     private final UserRepository userRepository;
+    private final MyUserDetailsService userDetailsService;
 
-    public SecurityConfig(JwtService service, UserRepository userRepos) {
+    public SecurityConfig(MyUserDetailsService userDetailsService, JwtService service, UserRepository userRepos) {
         this.jwtService = service;
         this.userRepository = userRepos;
+        this.userDetailsService = userDetailsService;
     }
 
     @Bean
@@ -53,10 +56,10 @@ public class SecurityConfig  {
                 .antMatchers(HttpMethod.POST, "/auth").permitAll()
                 .antMatchers("/secret").hasAuthority("ADMIN")
                 //alles wat de admin MEER mag dan de user, moet je hierin zetten.
-                .antMatchers("/**").hasAnyAuthority("USER", "ADMIN")
+                .antMatchers("/**").permitAll()
                 .and()
                 .addFilterBefore(new JwtRequestFilter(jwtService, userDetailsService()), UsernamePasswordAuthenticationFilter.class)
-                .csrf().disable()
+                .csrf().disable() //cross site request forgery: server stuurt een extra token naar de client
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         return http.build();

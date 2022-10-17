@@ -54,4 +54,14 @@ public class Order {
     public void setId(Long id) {
         this.id = id;
     }
+
+
+    /* CODE VAN ROBERTJAN, OM DE EINDPRIJS VAST TE STELLEN.
+    public double calculateAmount() {
+        return this.quanty * this.unitprice;
+    }*/
+
+    //in LES17 staan twee voorbeelden van unittesten.
+    // De unittest staat in de map test (en dan down the line)
+    // die verwijzen naar methodes uit het MODEL (ORDER).
 }

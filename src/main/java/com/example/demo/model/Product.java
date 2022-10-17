@@ -15,9 +15,10 @@ public class Product {
     private String productName;
     @Column(nullable = false)
     private double price;
+
     private double discountPrice;
     private String description;
-    private int weight;
+
 
     @OneToMany(cascade = CascadeType.DETACH)
     @JoinColumn(name = "orderLine_id")
@@ -60,11 +61,4 @@ public class Product {
         this.description = description;
     }
 
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
 }

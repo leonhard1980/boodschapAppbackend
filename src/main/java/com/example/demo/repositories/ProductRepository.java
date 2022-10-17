@@ -1,5 +1,4 @@
 package com.example.demo.repositories;
-import com.example.demo.model.OrderLine;
 import com.example.demo.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 
