@@ -8,6 +8,5 @@ public class ProductDto {
     public double price;
     public double discountPrice;
     public String description;
-    public int weight;
 
 }

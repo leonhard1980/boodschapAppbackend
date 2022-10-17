@@ -7,11 +7,18 @@ import java.util.Collection;
 @Table(name="users")
 public class AppUser {
     @Id
-    public boolean hasTooManyWrongLogins;
     private Long id;
     private String username;
-    private UserDetails userDetails;
+    private int age;
+    //private enum Sex;
+    private String email;
+    private String zipcode;
+    private int number; //dit is het huisnummer
+    private String city;
+    private boolean wantsNewsletter;
     private String password;
+    public boolean hasTooManyWrongLogins;
+
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles;
@@ -44,11 +51,7 @@ public class AppUser {
         this.roles = roles;
     }
 
-    public UserDetails getUserDetails() {
-        return userDetails;
-    }
 
-    public void setUserDetails(UserDetails userDetails) {
-        this.userDetails = userDetails;
-    }
+
+
 }

@@ -1,10 +1,9 @@
 package com.example.demo.controller;
-
 import com.example.demo.dto.ProductDto;
 import com.example.demo.services.ProductService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Collection;
 
 @RestController
@@ -33,7 +32,7 @@ public class ProductController {
     }
 
     @PostMapping("/products")
-    public ResponseEntity<Object> postProduct(@RequestBody String productName){
+    public ResponseEntity<Object> createProduct(@RequestBody String productName){
         return ResponseEntity.created();
     }
 
@@ -47,10 +46,10 @@ public class ProductController {
         return ResponseEntity.noContent();
     }
 
-    //hieronder een methode die de amount van de Orderlines doorzoekt en
-    // dan het product met de hoogste amount teruggeeft.
-    @GetMapping("/products")
-    public ResponseEntity<Object> getMostSoldProduct(){
-       sort Orderline.amount
+    @GetMapping("/products/{id}")
+    public ResponseEntity<ProductDto> retrieveOrderLine(@PathVariable Long id){
+        ProductDto odto = productService.getOrder(id);
+        return new ResponseEntity<>(odto, HttpStatus.OK);
     }
+
 }
